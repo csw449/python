@@ -7,6 +7,40 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from openpyxl.styles import Alignment
+import logging
+
+logfilename = './log/test.log'
+logging.basicConfig(filename='./log/test.log', level=logging.DEBUG)
+logger = logging.getLogger("crumbs")
+logger.setLevel(logging.DEBUG)
+
+logging.debug('debug')
+logging.info('info')
+logging.warning('warning')
+logging.error('error')
+logging.critical('critical')
+'''
+# ./log/test.log 결과
+DEBUG:root:debug
+INFO:root:info
+WARNING:root:warning
+ERROR:root:error
+CRITICAL:root:critical
+'''
+formatter = logging.Formatter('[%(levlename)s|%(filename)s:%(lineno)s]%(asctime)s>%(message)s')
+fileHandler = logging.FileHandler('./log/my.log')
+
+fileHandler.setFormatter(formatter)
+
+logger.debug("debug")
+logger.info("info")
+logger.warning("warning")
+logger.error("error")
+logger.critical("critical")
+
+# file max size 설정 10MB
+file_max_bytes = 10*1024*1024
+filehandler = logging.handlers.RotatingFileHandler(filename='./log/test.log', maxBytes=file_max_bytes, backupCount=10)
 
 start = datetime.datetime.now()
 print('시작시간 : ' + str(start))
