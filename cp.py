@@ -38,10 +38,6 @@ logger.warning("warning")
 logger.error("error")
 logger.critical("critical")
 
-# file max size 설정 10MB
-file_max_bytes = 10*1024*1024
-filehandler = logging.handlers.RotatingFileHandler(filename='./log/test.log', maxBytes=file_max_bytes, backupCount=10)
-
 start = datetime.datetime.now()
 print('시작시간 : ' + str(start))
 
