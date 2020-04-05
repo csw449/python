@@ -11,8 +11,6 @@ import logging
 '''
 logfilename = './log/test.log'
 logging.basicConfig(filename='./log/test.log', level=logging.DEBUG)
-logger = logging.getLogger("crumbs")
-logger.setLevel(logging.DEBUG)
 
 logging.debug('debug')
 logging.info('info')
@@ -30,8 +28,9 @@ CRITICAL:root:critical
 '''
 formatter = logging.Formatter('[%(levlename)s|%(filename)s:%(lineno)s]%(asctime)s>%(message)s')
 fileHandler = logging.FileHandler('./log/my.log')
-
 fileHandler.setFormatter(formatter)
+logger = logging.getLogger("crumbs")
+logger.setLevel(logging.DEBUG)
 
 logger.debug("debug")
 logger.info("info")
@@ -148,4 +147,4 @@ timediff = end - start
 
 print('소요시간 : ' + str(timediff))
 
-#f.close()
+f.close()
