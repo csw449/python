@@ -95,7 +95,7 @@ column_list_width = [17,8.5,20,20,9,12,15,95,15,6,9,15,15,90,45,15]
 column_list_name = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P']
 titlecell_list_name = ['A1','B1','C1','D1','E1','F1','G1','H1','I1','J1','K1','L1','M1','N1','O1','P1']
 
-
+completed_list_before = 0
 for c in csv:
  origin.append(c)
 for i in range(len(supplier)):
@@ -120,9 +120,11 @@ for i in range(len(supplier)):
    #sheet.column_dimensions['C'].width  20.5
    #sheet.column_dimensions['D'].width = 15
    wb.save('컨비니_{}_{}_{}_{}_발주서.xlsx'.format(year,month,day,supplier[i]))
+   completed_list_before+=1
   else:
    continue
 company_final_list = []
+completed_list_after = 0
 #파일명 변경 프로세스
 for i in range(len(supplier)): #공급자명 리스트 for 문
  for j in range(len(ceo_name_list)): #ceo_name_list for 문
@@ -131,6 +133,7 @@ for i in range(len(supplier)): #공급자명 리스트 for 문
    #print('공급자명 : ' + supplier[i] + ', ' + '대표명 : ' + ceo_name_list[j] + ', ' + '회사명 : ' + company_name_list[j])
    try :
     rename('C:/Users/nana/Desktop/컨비니_{}_{}_{}_{}_발주서.xlsx'.format(year, month, day, ceo_name_list[j]),'컨비니_{}_{}_{}_{}_발주서.xlsx'.format(year, month, day, company_name_list[j]))
+    completed_list_after+=1
    except:
     print(supplier[i] + ' 또는 ' + company_name_list[j] + '에 일치하는 회사 또는 대표명이 없습니다.')
   else:
@@ -140,6 +143,10 @@ for i in range(len(supplier)): #공급자명 리스트 for 문
 
 #for i in range(10):
  #sending_email('africa352@naver.com', filenamelist[i])
+
+complete_result = open("{}-{}-{} 결과.txt".format(year,month,day), 'w')
+complete_result.write("총 변환한 파일 수 : ", str(completed_list_befor))
+complete_result.write('이름이 업체명으로 변경된 파일 수 : ', str(completed_list_after))
 
 end = datetime.datetime.now()
 
