@@ -8,7 +8,7 @@ from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from openpyxl.styles import Alignment
 import logging
-
+'''
 logfilename = './log/test.log'
 logging.basicConfig(filename='./log/test.log', level=logging.DEBUG)
 logger = logging.getLogger("crumbs")
@@ -19,6 +19,7 @@ logging.info('info')
 logging.warning('warning')
 logging.error('error')
 logging.critical('critical')
+'''
 '''
 # ./log/test.log 결과
 DEBUG:root:debug
